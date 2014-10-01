@@ -1,6 +1,7 @@
 class MainViewController < UIViewController
 
-	SERVER_ADDR = 'http://192.168.196.186:3000/'
+  # SERVER_ADDR = 'http://192.168.196.186:3000/'
+	SERVER_ADDR = 'http://192.168.178.46:3000/'
 
   def loadView
     super

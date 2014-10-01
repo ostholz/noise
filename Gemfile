@@ -7,6 +7,6 @@ gem 'afmotion'
 
 gem 'motion-layout'
 
-# gem 'bubble-wrap'
+gem 'bubble-wrap', '~> 1.7.1'
 
 # gem 'motion-kit'

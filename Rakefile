@@ -23,6 +23,7 @@ Motion::Project::App.setup do |app|
   app.prerendered_icon = true
   app.info_plist['UIRequiredDeviceCapabilities'] = {'location-services' => true }
   
+  app.frameworks += ['AVFoundation']
   app.pods do
     pod 'FMDB'
   end

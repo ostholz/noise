@@ -1,6 +1,6 @@
 class MainViewController < UIViewController
 
-	SERVER_ADDR = 'http://192.168.178.46:3000/'
+	SERVER_ADDR = 'http://192.168.196.186:3000/'
 
   def loadView
     super
@@ -39,7 +39,7 @@ class MainViewController < UIViewController
 
   		if result.success?
   			noises = result.object
-  			noises.each{ |n| puts n[:name] }
+        save_noise(noises)
   		elsif result.failure?
   			p result.error.localizedDescription
   		end
@@ -49,7 +49,8 @@ class MainViewController < UIViewController
   private
 
   def save_noise(noises)
-  	
+  	@datas.noise_list = noises
+    @collectionView.reloadData
   end
 
 end

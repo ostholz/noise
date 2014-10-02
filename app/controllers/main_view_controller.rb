@@ -1,7 +1,7 @@
 class MainViewController < UIViewController
 
-  # SERVER_ADDR = 'http://192.168.196.186:3000/'
-	SERVER_ADDR = 'http://192.168.178.46:3000/'
+  SERVER_ADDR = 'http://test.ancientwind.de/'
+	# SERVER_ADDR = 'http://192.168.178.46:3000/'
 
   def loadView
     super
@@ -50,7 +50,8 @@ class MainViewController < UIViewController
   private
 
   def save_noise(noises)
-  	@datas.noise_list = noises
+    App::Persistence['saved_noise_list'] = noises
+  	@datas.noise_list= noises
     @collectionView.reloadData
   end
 

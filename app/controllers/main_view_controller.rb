@@ -35,7 +35,7 @@ class MainViewController < UIViewController
 
   def shouldRefresh
   	# make get request to server
-  	AFMotion::JSON.get(SERVER_ADDR + 'noises.json') do |result|
+  	AFMotion::JSON.get(SERVER_ADDR + 'noises/all') do |result|
   		@refreshControl.endRefreshing
 
   		if result.success?

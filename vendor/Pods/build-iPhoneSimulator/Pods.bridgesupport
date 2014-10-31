@@ -40,7 +40,6 @@
 <arg declared_type='AFNetworkReachabilityStatus' name='status' type='i' type64='q'/>
 <retval declared_type='NSString*' type='@'/>
 </function>
-<function_alias name='FMDBReturnAutoreleased' original='CFAutorelease'/>
 <class name='AFCompoundResponseSerializer'>
 <method class_method='true' selector='compoundSerializerWithResponseSerializers:'>
 <arg declared_type='NSArray*' index='0' name='responseSerializers' type='@'/>

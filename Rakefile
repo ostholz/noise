@@ -13,7 +13,7 @@ Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'noise'
 
-  app.deployment_target = '6.0'
+  app.deployment_target = '7.0'
   app.device_family = [:iphone, :ipad]
   # app.interface_orientations = [:portrait, :portrait_upside_down]
   app.identifier = 'de.i2dm.disgustingnoises'
@@ -31,7 +31,7 @@ Motion::Project::App.setup do |app|
   end
 
   app.development do
-    app.provisioning_profile = '/Users/dong/Library/MobileDevice/Provisioning Profiles/A824650D-95EC-4BF0-B483-F69A4B70B31E.mobileprovision'
+    app.provisioning_profile = '/Users/dong/Library/MobileDevice/Provisioning Profiles/97033dab-042e-4cf6-8a65-37320f1cbdc4.mobileprovision'
     app.codesign_certificate = 'iPhone Developer: Dong Wang (7Y59E87GCZ)'
   end
    

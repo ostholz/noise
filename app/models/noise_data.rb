@@ -1,16 +1,12 @@
 class NoiseData 
 
-  SERVER_ADDR = 'http://test.ancientwind.de/'
-  # SERVER_ADDR = 'http://192.168.178.46:3000/'
-
   def initialize
-    p 'noise data init ...'
     @noise_list = App::Persistence['saved_noise_list'] || []
     @audioPlayer = nil
 
-    @original_noises = [{id: 1, name: 'laugh1.mp3', icon: 'laugh.png'}, 
-      {id: 2, name: 'fart1.mp3', icon: 'fart.png'}, {id: 3, name: 'barf1.mp3', icon: 'puke.png'},
-      {id: 4, name: 'scream9.mp3', icon: 'ambient.png'}]
+    @original_noises = [{id: 1, sounds: ['laugh1.mp3'], icon: 'laugh.png'}, 
+      {id: 2, sounds: ['fart1.mp3'], icon: 'fart.png'}, {id: 3, sounds: ['barf1.mp3'], icon: 'puke.png'},
+      {id: 4, sounds: ['scream9.mp3'], icon: 'ambient.png'}]
     @original_noises.each {|on| @noise_list << on}  
   end
 
@@ -69,7 +65,9 @@ class NoiseData
 
   # UICollectionView Delegate 
   def collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
-    sound_name = @noise_list[indexPath.row][:name]
+    sound_names = @noise_list[indexPath.row][:sounds]
+    sound_name = nil
+    sound_name = sound_names[Random.rand(sound_names.length)]
     # play sound
     # 1. file in Bundle?
 

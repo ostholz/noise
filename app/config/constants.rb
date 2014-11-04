@@ -1,0 +1,1 @@
+SERVER_ADDR = 'http://test.ancientwind.de/'

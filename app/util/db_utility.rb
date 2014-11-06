@@ -1,5 +1,0 @@
-class DbUtility
-
-	
-	
-end

@@ -4,6 +4,9 @@ class NoiseData
     @noise_list = App::Persistence['saved_noise_list'] || []
     @audioPlayer = nil
 
+    @lastPlayedRowWithMultipleSound = 0
+    @soundToPlay = []
+
     @original_noises = [{id: 1, sounds: ['laugh1.mp3'], icon: 'laugh.png'}, 
       {id: 2, sounds: ['fart1.mp3'], icon: 'fart.png'}, {id: 3, sounds: ['barf1.mp3'], icon: 'puke.png'},
       {id: 4, sounds: ['scream9.mp3'], icon: 'ambient.png'}]
@@ -67,7 +70,24 @@ class NoiseData
   def collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
     sound_names = @noise_list[indexPath.row][:sounds]
     sound_name = nil
-    sound_name = sound_names[Random.rand(sound_names.length)]
+
+    if sound_names.size > 1
+      if indexPath.row == @lastPlayedRowWithMultipleSound
+        if @soundToPlay.size == 0
+          @soundToPlay = sound_names.size.times.to_a
+        end
+         # per zufall waehlt einen Sound aus
+        pos = Random.rand(@soundToPlay.size)
+        soundIndex = @soundToPlay.delete_at(pos)
+        sound_name = sound_names[soundIndex]
+      else
+        # @soundToPlay enthaelt alle die noch nicht gespielt sounds.
+        @lastPlayedRowWithMultipleSound = indexPath.row
+        @soundToPlay = sound_names.size.times.to_a    
+      end
+    elsif sound_names.size == 1
+      sound_name = sound_names[0]
+    end
     # play sound
     # 1. file in Bundle?
 
@@ -104,7 +124,6 @@ class NoiseData
   end
 
   def playSound(name, forCell: cell)
-
     if @audioPlayer != nil && @audioPlayer.isPlaying
       @audioPlayer.stop
       @progressTimer.invalidate
@@ -121,11 +140,11 @@ class NoiseData
       @audioPlayer.prepareToPlay
       @audioPlayer.play
 
-      progressView = PDColoredProgressView.alloc.initWithProgressViewStyle(UIProgressViewStyleDefault)
+      progressView = UIProgressView.new
       cell_frame = cell.frame
-      progress_frame = CGRectMake(1, cell_frame.size.height - 10, cell_frame.size.width - 2, 5)
+      progress_frame = CGRectMake(2, cell_frame.size.height - 5, cell_frame.size.width - 4, 3)
       progressView.frame = progress_frame
-      progressView.setTintColor(UIColor.greenColor())
+      progressView.progressTintColor = UIColor.greenColor()
       progressView.tag = 102
       cell.contentView.addSubview(progressView)
 

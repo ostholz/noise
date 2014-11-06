@@ -21,11 +21,15 @@ class MainViewController < UIViewController
     @collectionView.addSubview(@refreshControl)
     @collectionView.alwaysBounceVertical = true
 
+    @bannerView = ADBannerView.alloc.init()
+    # @bannerView.delegate = self
+
     Motion::Layout.new do |layout|
       layout.view(view)
-      layout.subviews(collection: @collectionView)
-      layout.vertical('|-5-[collection]-5-|')
+      layout.subviews(collection: @collectionView, banner: @bannerView)
+      layout.vertical('|-5-[collection]-[banner(==66)]-5-|')
       layout.horizontal('|-5-[collection]-5-|')
+      layout.horizontal('|-5-[banner]-5-|')
     end
 
   end

@@ -23,12 +23,9 @@ Motion::Project::App.setup do |app|
   app.prerendered_icon = true
   app.info_plist['UIRequiredDeviceCapabilities'] = {'location-services' => true }
 
-  app.vendor_project('vendor/PDColoredProgress', :static)
+  # app.vendor_project('vendor/PDColoredProgress', :static)
   
-  app.frameworks += ['AVFoundation']
-  app.pods do
-    # pod 'FMDB'
-  end
+  app.frameworks += ['AVFoundation', 'iAd']
 
   app.development do
     app.provisioning_profile = '/Users/dong/Library/MobileDevice/Provisioning Profiles/97033dab-042e-4cf6-8a65-37320f1cbdc4.mobileprovision'
@@ -36,9 +33,8 @@ Motion::Project::App.setup do |app|
   end
    
   app.release do
-    app.info_plist['AppStoreRelease'] = true
-    app.entitlements['get-task-allow'] = false
+    # app.info_plist['AppStoreRelease'] = true
     app.provisioning_profile = '/Users/dong/Library/MobileDevice/Provisioning Profiles/F026DE6C-51B6-4586-915A-48C0FA467E41.mobileprovision'
-    app.codesign_certificate = 'i2dm consulting & development GmbH'
+    app.codesign_certificate = 'iPhone Distribution: i2dm consulting & development GmbH'
   end
 end
